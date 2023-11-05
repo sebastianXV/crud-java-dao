@@ -14,7 +14,7 @@ public class FuncionarioDao {
     private static final String GET_FUNCIONARIOS = "SELECT * FROM funcionarios";
     private static final String CREATE_FUNCIONARIO = "INSERT INTO funcionarios (numero_identificacion, nombres, apellidos, estado_civil, sexo, direccion, telefono, fecha_nacimiento, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String GET_FUNCIONARIO_BY_ID = "SELECT * FROM funcionarios WHERE id_funcionario = ?";
-    private static final String UPDATE_FUNCIONARIO = "UPDATE funcionarios SET numero_identificacion = ? nombres = ?, apellidos = ?, estado_civil = ?, sexo = ?, direccion = ?, telefono = ?, fecha_nacimiento = ?, rol = ? WHERE id_funcionario = ?";
+    private static final String UPDATE_FUNCIONARIO = "UPDATE funcionarios SET numero_identificacion = ?, nombres = ?, apellidos = ?, estado_civil = ?, sexo = ?, direccion = ?, telefono = ?, fecha_nacimiento = ?, rol = ? WHERE id_funcionario = ?";
     private static final String DELETE_FUNCIONARIO = "DELETE FROM funcionarios WHERE id_funcionario = ?";
 
     public List<Funcionario> obtenerFuncionarios() throws SQLException {

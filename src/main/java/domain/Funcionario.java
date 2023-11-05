@@ -14,7 +14,9 @@ public class Funcionario {
     private String direccion;
     private String telefono;
     private Date fechaNacimiento;
+    private String rol;
 
+    
     public String getRol() {
         return rol;
     }
@@ -22,7 +24,6 @@ public class Funcionario {
     public void setRol(String rol) {
         this.rol = rol;
     }
-    private String rol;
 
     public int getId() {
         return id;
@@ -109,5 +110,4 @@ public class Funcionario {
         return "Funcionarios{" + "id=" + id + ", identificacion=" + identificacion + ", numeroIdentificacion=" + numeroIdentificacion + ", nombres=" + nombres + ", apellidos=" + apellidos + ", estadoCivil=" + estadoCivil + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
-    
 }

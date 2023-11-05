@@ -15,7 +15,7 @@ public class AppFuncionarios {
 
             System.out.println("Digite la identificación");
             int identificacion = sc.nextInt();
-            sc.nextLine();  
+            sc.nextLine();
             System.out.println("La identificación es = " + identificacion);
             System.out.println("_________________________________ ");
 
@@ -78,7 +78,7 @@ public class AppFuncionarios {
         }
     }
 
-    public static void obtenerFuncionarios(FuncionarioController funcionarioController) {
+    public static void obtener(FuncionarioController funcionarioController) {
         try {
             List<Funcionario> funcionarios = funcionarioController.obtenerFuncionarios();
             if (funcionarios.isEmpty()) {
@@ -105,13 +105,13 @@ public class AppFuncionarios {
         }
     }
 
-    public static void actualizarFuncionario(FuncionarioController funcionarioController) {
+    public static void actualizar(FuncionarioController funcionarioController) {
         try {
             Scanner scanner = new Scanner(System.in);
 
             System.out.print("Ingrese el ID del funcionario que desea actualizar: ");
             int id = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea
+            scanner.nextLine();
 
             Funcionario funcionarioExistente = funcionarioController.obtenerFuncionario(id);
 
@@ -120,9 +120,9 @@ public class AppFuncionarios {
                 System.out.println(funcionarioExistente);
 
                 System.out.println("Ingrese los nuevos datos del funcionario:");
-                System.out.print("Numero de identificacion: ");
-                long nuevaIdentificacion = scanner.nextLong();
 
+                System.out.print("Numero de identificacion: ");
+                int nuevaIdentificacion = scanner.nextInt();
                 scanner.nextLine();
                 System.out.print("Nombres: ");
                 String nuevosNombres = scanner.nextLine();
@@ -139,7 +139,7 @@ public class AppFuncionarios {
                 System.out.println("Fecha de nacimiento (en formato yyyy-MM-dd): ");
                 String fechaNacimientoStr = scanner.nextLine();
                 java.sql.Date fechaNacimiento = java.sql.Date.valueOf(fechaNacimientoStr);
-                System.out.println("Rol: ");
+                System.out.print("Rol: ");
                 String rol = scanner.nextLine();
 
                 Funcionario funcionarioActualizado = new Funcionario();
@@ -163,12 +163,62 @@ public class AppFuncionarios {
         }
     }
 
+    public static void eliminar(FuncionarioController funcionarioController) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.print("Ingrese el ID del funcionario que desea eliminar: ");
+            int id = scanner.nextInt();
+
+            Funcionario funcionarioExistente = funcionarioController.obtenerFuncionario(id);
+
+            if (funcionarioExistente != null) {
+                funcionarioController.eliminarFuncionario(id);
+                System.out.println("Funcionario eliminado con éxito.");
+            } else {
+                System.out.println("Funcionario no encontrado. Verifique el ID.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 
         FuncionarioController funcionarioController = new FuncionarioController();
-        //crear(funcionarioController);
-        actualizarFuncionario(funcionarioController);
-        obtenerFuncionarios(funcionarioController);
 
+        while (true) {
+            System.out.println("\nMenú de Funcionarios:");
+            System.out.println("1. Crear Funcionario");
+            System.out.println("2. Obtener Funcionarios");
+            System.out.println("3. Actualizar Funcionario");
+            System.out.println("4. Eliminar Funcionario");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            Scanner scanner = new Scanner(System.in);
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    crear(funcionarioController);
+                    break;
+                case 2:
+                    obtener(funcionarioController);
+                    break;
+                case 3:
+                    actualizar(funcionarioController);
+                    break;
+                case 4:
+                     eliminar(funcionarioController);              
+                    break;
+                case 5:
+                    System.out.println("Saliendo del programa.");
+                    System.exit(0);
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+            }
+        }
     }
+
 }
