@@ -73,6 +73,7 @@ public class FuncionarioDao {
             preparedStatement.setString(7, funcionario.getTelefono());
             preparedStatement.setDate(8, funcionario.getFechaNacimiento());
             preparedStatement.setString(9, funcionario.getRol());
+            
             preparedStatement.executeUpdate();
         } finally {
             if (connection != null) {
@@ -139,7 +140,8 @@ public class FuncionarioDao {
             preparedStatement.setString(6, funcionario.getDireccion());
             preparedStatement.setString(7, funcionario.getTelefono());
             preparedStatement.setDate(8, funcionario.getFechaNacimiento());
-            preparedStatement.setInt(9, id);
+            preparedStatement.setString(9, funcionario.getRol());
+            preparedStatement.setInt(10, funcionario.getId());
             preparedStatement.executeUpdate();
         } finally {
             if (connection != null) {
