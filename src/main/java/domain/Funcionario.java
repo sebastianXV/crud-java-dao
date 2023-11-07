@@ -6,7 +6,7 @@ public class Funcionario {
 
     private int id;
     private int identificacion;
-    private long numeroIdentificacion;
+    private int numeroIdentificacion;
     private String nombres;
     private String apellidos;
     private String estadoCivil;
@@ -41,11 +41,11 @@ public class Funcionario {
         this.identificacion = identificacion;
     }
 
-    public long getNumeroIdentificacion() {
+    public int getNumeroIdentificacion() {
         return numeroIdentificacion;
     }
 
-    public void setNumeroIdentificacion(long numeroIdentificacion) {
+    public void setNumeroIdentificacion(int numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 

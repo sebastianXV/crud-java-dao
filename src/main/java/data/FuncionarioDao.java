@@ -73,7 +73,7 @@ public class FuncionarioDao {
             preparedStatement.setString(7, funcionario.getTelefono());
             preparedStatement.setDate(8, funcionario.getFechaNacimiento());
             preparedStatement.setString(9, funcionario.getRol());
-            
+
             preparedStatement.executeUpdate();
         } finally {
             if (connection != null) {
@@ -100,7 +100,8 @@ public class FuncionarioDao {
             if (resultSet.next()) {
                 funcionario = new Funcionario();
                 funcionario.setId(resultSet.getInt("id_funcionario"));
-                funcionario.setIdentificacion(resultSet.getInt("numero_identificacion"));
+                funcionario.setIdentificacion(resultSet.getInt("id_identificacion"));
+                funcionario.setNumeroIdentificacion(resultSet.getInt("numero_identificacion"));
                 funcionario.setNombres(resultSet.getString("nombres"));
                 funcionario.setApellidos(resultSet.getString("apellidos"));
                 funcionario.setEstadoCivil(resultSet.getString("estado_civil"));
@@ -132,7 +133,8 @@ public class FuncionarioDao {
         try {
             connection = ConnectionUtil.getConnection();
             preparedStatement = connection.prepareStatement(UPDATE_FUNCIONARIO);
-            preparedStatement.setLong(1, funcionario.getIdentificacion());
+
+            preparedStatement.setInt(1, funcionario.getNumeroIdentificacion());
             preparedStatement.setString(2, funcionario.getNombres());
             preparedStatement.setString(3, funcionario.getApellidos());
             preparedStatement.setString(4, funcionario.getEstadoCivil());
@@ -141,7 +143,8 @@ public class FuncionarioDao {
             preparedStatement.setString(7, funcionario.getTelefono());
             preparedStatement.setDate(8, funcionario.getFechaNacimiento());
             preparedStatement.setString(9, funcionario.getRol());
-            preparedStatement.setInt(10, funcionario.getId());
+            preparedStatement.setInt(10, id); 
+
             preparedStatement.executeUpdate();
         } finally {
             if (connection != null) {
